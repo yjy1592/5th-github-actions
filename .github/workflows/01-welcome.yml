@@ -1,0 +1,17 @@
+name: Welcome Team Member
+run-name: "새 팀원 환영 - 실행자: [01] {{ github.actor}}"
+on:
+  workflow_dispatch
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 인사
+        run: |
+          echo "=== 환영합니다 ==="
+          echo "오늘은 당신의 첫 출근입니다"
+          echo "프로젝트: Github Actions 학습"
+          echo "팀: DevOps"
+          echo "Runner OS: Linux"
+          echo "=== 행운을 빕니다 ==="
