@@ -1,4 +1,5 @@
 name: 01. Hello GitHub Actions
+run-name: "[01] ${{ github.actor }}의 실행"
 on:
   workflow_dispatch
 
@@ -7,4 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 인사 출력
-        run: echo "Hello, GitHub Actions!"
+        run: |
+          echo "Hello, GitHub Actions!"
+
+      - name: Runner 정보 확인
+        run: |
+          echo "OS: $RUNNER_OS"
+          echo "Workspace: $GITHUB_WORKSPACE"
+          echo "실행자: ${{ github.actor }}"
+          echo "브랜치: ${{ github.ref_name }}"
