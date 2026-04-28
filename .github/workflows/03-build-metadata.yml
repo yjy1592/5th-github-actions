@@ -21,14 +21,14 @@ jobs:
       - name: 메타데이터 출력
         run: |
           echo "=== 빌드 메타데이터 ==="
-          Build ID: ${{ steps.meta.outputs.build_id }}
-          Short SHA: ${{ steps.meta.outputs.short_sha }}
-          Actor: ${{ steps.meta.outputs.actor_upper }}
-          Timestamp: ${{ steps.meta.outputs.timestamp }}
+          echo "Build ID: ${{ steps.meta.outputs.build_id }}"
+          echo "Short SHA: ${{ steps.meta.outputs.short_sha }}"
+          echo "Actor: ${{ steps.meta.outputs.actor_upper }}"
+          echo "Timestamp: ${{ steps.meta.outputs.timestamp }}"
 
       - name: Runner 환경 정보
         run: |
-          OS: ${{ runner.os }}
-          Arch: ${{ runner.arch }}
-          Repository: ${{ github.repository }}
-          Branch: ${{ github.ref_name }}
+          echo "OS: ${{ runner.os }}"
+          echo "Arch: ${{ runner.arch }}"
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref_name }}"
