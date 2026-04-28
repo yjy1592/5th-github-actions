@@ -40,7 +40,7 @@ jobs:
           DEPLOY_TARGET="${{ inputs.target_env }}-${{ inputs.app_version }}"
           COMMAND="deploy --env ${{ inputs.target_env }} --version ${{ inputs.app_version }} --user ${{ vars.DEPLOY_USER }}"
 
-          echo "deploy_target=$DEPOLY_TARGET" >> $GITHUB_OUTPUT
+          echo "deploy_target=$DEPLOY_TARGET" >> $GITHUB_OUTPUT
           echo "command=$COMMAND" >> $GITHUB_OUTPUT
           
       - name: 배포 명령어 출력 (시뮬레이션)
