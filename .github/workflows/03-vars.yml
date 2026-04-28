@@ -9,3 +9,10 @@ jobs:
       - name: vars 출력
         run: |
           echo "App Name: ${{ vars.APP_NAME }}"
+
+      - name: dev 출력
+        run: |
+          echo "App Url: ${{ dev.API_URL }}"
+      - name: prod 출력
+        run: |
+          echo "App Url: ${{ prod.API_URL }}"
