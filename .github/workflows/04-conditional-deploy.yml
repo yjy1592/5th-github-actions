@@ -25,7 +25,7 @@ jobs:
   deploy-staging:
     runs-on: ubuntu-latest
     needs: prepare
-    if: ${{ inputs.target == 'staging' || 'both' }}
+    if: ${{ inputs.target == 'staging' || inputs.target == 'both' }}
     steps:
       - name: 스테이징 배포
         run: |
@@ -34,7 +34,7 @@ jobs:
   deploy-production:
     runs-on: ubuntu-latest
     needs: prepare
-    if: ${{ inputs.target == 'production' || 'both' }}
+    if: ${{ inputs.target == 'production' || inputs.target == 'both' }}
     steps:
       - name: 프로덕션 배포
         run: |
