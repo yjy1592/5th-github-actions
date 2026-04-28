@@ -9,4 +9,5 @@ jobs:
         fruits: [Apple, Banana, Kiwi]
     steps:
       - name: 과일 출력
-        run: echo "현재 과일: ${{ matrix.fruits }}"
+        run: |
+          echo "현재 과일: ${{ matrix.fruits }}"
