@@ -32,7 +32,7 @@ jobs:
           echo "=== 입력값 ==="
           echo "버전: ${{ inputs.app_version }}"
           echo "환경: ${{ inputs.target_env }}"
-          echo" Dry Run: ${{ inputs.dry_run }}"
+          echo "Dry Run: ${{ inputs.dry_run }}"
 
       - name: 배포 정보 조합
         id: info
