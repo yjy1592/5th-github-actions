@@ -1,0 +1,30 @@
+name: Build Metadata Generator
+on: workflow_dispatch
+
+jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 메타데이터 생성
+        id: meta
+        run: |
+          >> $GITHUB_OUTPUT
+          short_sha: echo "${{ github.sha }}" | cut -c1-7
+          build_id: echo "build-{run_number}-{short_sha}"
+          actor_upper: echo "${{ github.actor }}" | tr 'a-z' 'A-Z'
+          timestamp: $(date +%s)
+
+      - name: 메타데이터 출력
+        run: |
+          echo "=== 빌드 메타데이터 ==="
+          Build ID: ${{ steps.meta.outputs.build_id }}
+          Short SHA: ${{ steps.meta.outputs.short_sha }}
+          Actor: ${{ steps.meta.outputs.actor_upper }}
+          Timestamp: ${{ steps.meta.outputs.timestamp }}
+
+      - name: Runner 환경 정보
+        run: |
+          OS: ${{ runner.os }}
+          Arch: ${{ runner.arch }}
+          Repository: ${{ github.repository }}
+          Branch: ${{ github.ref_name }}
