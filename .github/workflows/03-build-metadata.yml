@@ -8,11 +8,15 @@ jobs:
       - name: 메타데이터 생성
         id: meta
         run: |
-          >> $GITHUB_OUTPUT
-          short_sha: echo "${{ github.sha }}" | cut -c1-7
-          build_id: echo "build-{run_number}-{short_sha}"
-          actor_upper: echo "${{ github.actor }}" | tr 'a-z' 'A-Z'
-          timestamp: $(date +%s)
+          SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-7)
+          BUILD_ID="build-${{ github.run_number }}-$SHORT_SHA"
+          ACTOR_UPPER=$(echo "${{ github.actor }}" | tr 'a-z' 'A-Z')
+          TIMESTAMP=$(date +%s)
+
+          echo "short_sha=$SHORT_SHA" >> $GITHUB_OUTPUT
+          echo "build_id=$BUILD_ID" >> $GITHUB_OUTPUT
+          echo "actor_upper=$ACTOR_UPPER" >> $GITHUB_OUTPUT
+          echo "timestamp=$TIMESTAMP" >> $GITHUB_OUTPUT
 
       - name: 메타데이터 출력
         run: |
