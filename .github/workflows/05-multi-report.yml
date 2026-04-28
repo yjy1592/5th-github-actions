@@ -1,0 +1,59 @@
+name: Multi Report Collector
+on: workflow_dispatch
+
+jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 단위 테스트
+        run: |
+          mkdir -p reports/unit
+          echo "단위 테스트 통과 5/5" >> reports/unit/result.txt
+          echo "실행 번호: ${{ github.run_number }}" >> reports/unit/result.txt
+
+      - name: 
+        uses: actions/upload-artifact@v4
+        with: 
+          name: unit-report-${{ github.run_number }}
+          path: reports/unit/
+          
+
+  integration-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 
+        run: |
+          mkdir -p reports/integration
+          echo "통합 테스트 통과 3/3" >> reports/integration/result.txt
+          echo "실행 번호: ${{ github.run_number }}" >> reports/integration/result.txt
+      - name: integration-report-${{ github.run_number }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-report-${{ github.run_number }}
+          path: reports/integration/
+
+  summary:
+    runs-on: ubuntu-latest
+    needs: [unit-test, integration-test]
+    steps:
+      - name: 
+        uses: actions/download-artifact@v4
+        with:
+          name: unit-report-${{ github.run_number }}
+          path: ./unit
+      - name: 
+        uses: actions/download-artifact@v4
+        with:
+          name: integration-report-${{ github.run_number }}
+          path: ./integration
+      - name: 
+        run: |
+          echo "=== 종합 테스트 리포트 ==="
+          echo "=== 단위 테스트 ==="
+          cat ./unit/result.txt
+          echo "=== 통합 테스트 ==="
+          cat ./integration/result.txt
+          echo "=== 끝 ==="
+          
+    
+        
